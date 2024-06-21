@@ -13,7 +13,7 @@
 
         <label>Skills</label>
         <input type="text" required v-model="tempSkill" @keyup.alt="addSkill" />
-        <div v-for="skill in skills" :key="skill" class="pill" @click="removeSkill">{{ skill }}</div>
+        <div v-for="skill in skills" :key="skill" class="pill" @click="removeSkill(skill)">{{ skill }}</div>
 
         <div class="terms">
             <input type="checkbox" v-model="checkbox" />
@@ -49,9 +49,8 @@ export default {
                 this.tempSkill = '';
             }
         },
-        removeSkill(e) {
-            let test = this.skills.findIndex(() => e.target.innerText);
-            this.skills.splice(test, 1);
+        removeSkill(skill) {
+            this.skills = this.skills.filter(() => !skill);
         },
     },
 };
